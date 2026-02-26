@@ -44,43 +44,48 @@ function extractSessionSummary(transcriptPath) {
     try {
       const entry = JSON.parse(line);
 
-      // Collect user messages (first 200 chars each)
-      if (entry.type === 'user' || entry.role === 'user' || entry.message?.role === 'user') {
-        // Support both direct content and nested message.content (Claude Code JSONL format)
-        const rawContent = entry.message?.content ?? entry.content;
-        const text = typeof rawContent === 'string'
-          ? rawContent
-          : Array.isArray(rawContent)
-            ? rawContent.map(c => (c && c.text) || '').join(' ')
-            : '';
-        if (text.trim()) {
-          userMessages.push(text.trim().slice(0, 200));
+      // Factory Droid format: {"type":"message","message":{"role":"user","content":[{type,text}]}}
+      if (entry.type === 'message' && entry.message?.role === 'user' && Array.isArray(entry.message.content)) {
+        for (const block of entry.message.content) {
+          if (block.type === 'text' && block.text) {
+            const text = block.text.trim();
+            // Skip system reminders and tool results
+            if (text.startsWith('<system-reminder>')) continue;
+            if (text.startsWith('<system-notification>')) continue;
+            if (text.startsWith('Error: Request was aborted')) continue;
+            if (text.startsWith('Request interrupted')) continue;
+            if (text.startsWith('Request cancelled')) continue;
+            if (text.length < 2) continue;
+            userMessages.push(text.slice(0, 200));
+          }
         }
       }
 
-      // Collect tool names and modified files (direct tool_use entries)
-      if (entry.type === 'tool_use' || entry.tool_name) {
-        const toolName = entry.tool_name || entry.name || '';
-        if (toolName) toolsUsed.add(toolName);
-
-        const filePath = entry.tool_input?.file_path || entry.input?.file_path || '';
-        if (filePath && (toolName === 'Edit' || toolName === 'Write')) {
-          filesModified.add(filePath);
-        }
-      }
-
-      // Extract tool uses from assistant message content blocks (Claude Code JSONL format)
-      if (entry.type === 'assistant' && Array.isArray(entry.message?.content)) {
+      // Factory Droid format: assistant messages contain tool_use blocks in content array
+      if (entry.type === 'message' && entry.message?.role === 'assistant' && Array.isArray(entry.message.content)) {
         for (const block of entry.message.content) {
           if (block.type === 'tool_use') {
             const toolName = block.name || '';
             if (toolName) toolsUsed.add(toolName);
 
             const filePath = block.input?.file_path || '';
-            if (filePath && (toolName === 'Edit' || toolName === 'Write')) {
+            if (filePath && /^(Edit|Write|Create|ApplyPatch)$/.test(toolName)) {
               filesModified.add(filePath);
             }
           }
+        }
+      }
+
+      // Legacy Claude Code format support
+      if ((entry.type === 'user' || entry.role === 'user') && !entry.message) {
+        const rawContent = entry.content;
+        const text = typeof rawContent === 'string'
+          ? rawContent
+          : Array.isArray(rawContent)
+            ? rawContent.filter(c => c.type === 'text' && c.text && !c.text.startsWith('<system-reminder>')).map(c => c.text).join(' ')
+            : '';
+        if (text.trim() && text.trim().length > 1) {
+          userMessages.push(text.trim().slice(0, 200));
         }
       }
     } catch {

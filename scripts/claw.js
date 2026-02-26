@@ -30,7 +30,7 @@ function isValidSessionName(name) {
 // ─── Storage Adapter (Markdown-as-Database) ─────────────────────────────────
 
 function getClawDir() {
-  return path.join(os.homedir(), '.claude', 'claw');
+  return path.join(os.homedir(), '.factory', 'claw');
 }
 
 function getSessionPath(name) {

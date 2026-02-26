@@ -1,19 +1,19 @@
 ---
 name: security-scan
-description: Scan your Claude Code configuration (.factory/ directory) for security vulnerabilities, misconfigurations, and injection risks using AgentShield. Checks AGENTS.md, settings.json, MCP servers, hooks, and agent definitions.
+description: Scan your Factory Droid configuration (.factory/ directory) for security vulnerabilities, misconfigurations, and injection risks using AgentShield. Checks AGENTS.md, settings.json, MCP servers, hooks, and agent definitions.
 origin: ECC
 ---
 
 # Security Scan Skill
 
-Audit your Claude Code configuration for security issues using [AgentShield](https://github.com/affaan-m/agentshield).
+Audit your Factory Droid configuration for security issues using [AgentShield](https://github.com/affaan-m/agentshield).
 
 ## When to Activate
 
-- Setting up a new Claude Code project
+- Setting up a new Factory Droid project
 - After modifying `.factory/settings.json`, `AGENTS.md`, or MCP configs
 - Before committing configuration changes
-- When onboarding to a new repository with existing Claude Code configs
+- When onboarding to a new repository with existing Factory Droid configs
 - Periodic security hygiene checks
 
 ## What It Scans
@@ -52,7 +52,7 @@ Run against the current project's `.factory/` directory:
 npx ecc-agentshield scan
 
 # Scan a specific path
-npx ecc-agentshield scan --path /path/to/.claude
+npx ecc-agentshield scan --path /path/to/.factory
 
 # Scan with minimum severity filter
 npx ecc-agentshield scan --min-severity medium

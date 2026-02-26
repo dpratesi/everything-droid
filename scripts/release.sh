@@ -5,7 +5,7 @@ set -euo pipefail
 # Usage: ./scripts/release.sh VERSION
 
 VERSION="${1:-}"
-PLUGIN_JSON=".claude-plugin/plugin.json"
+PLUGIN_JSON=".factory-plugin/plugin.json"
 
 # Function to show usage
 usage() {
@@ -28,8 +28,8 @@ fi
 
 # Check current branch is main
 CURRENT_BRANCH=$(git branch --show-current)
-if [[ "$CURRENT_BRANCH" != "main" ]]; then
-  echo "Error: Must be on main branch (currently on $CURRENT_BRANCH)"
+if [[ "$CURRENT_BRANCH" != "master" && "$CURRENT_BRANCH" != "main" ]]; then
+  echo "Error: Must be on main/master branch (currently on $CURRENT_BRANCH)"
   exit 1
 fi
 
@@ -66,6 +66,6 @@ fi
 git add "$PLUGIN_JSON"
 git commit -m "chore: bump plugin version to $VERSION"
 git tag "v$VERSION"
-git push origin main "v$VERSION"
+git push origin "$CURRENT_BRANCH" "v$VERSION"
 
 echo "Released v$VERSION"

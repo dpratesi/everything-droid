@@ -6,14 +6,14 @@
 # - Stop runs once at session end (lightweight)
 # - UserPromptSubmit runs every message (heavy, adds latency)
 #
-# Hook config (in ~/.claude/settings.json):
+# Hook config (in ~/.factory/settings.json):
 # {
 #   "hooks": {
 #     "Stop": [{
 #       "matcher": "*",
 #       "hooks": [{
 #         "type": "command",
-#         "command": "~/.claude/skills/continuous-learning/evaluate-session.sh"
+#         "command": "~/.factory/skills/continuous-learning/evaluate-session.sh"
 #       }]
 #     }]
 #   }
@@ -21,13 +21,13 @@
 #
 # Patterns to detect: error_resolution, debugging_techniques, workarounds, project_specific
 # Patterns to ignore: simple_typos, one_time_fixes, external_api_issues
-# Extracted skills saved to: ~/.claude/skills/learned/
+# Extracted skills saved to: ~/.factory/skills/learned/
 
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CONFIG_FILE="$SCRIPT_DIR/config.json"
-LEARNED_SKILLS_PATH="${HOME}/.claude/skills/learned"
+LEARNED_SKILLS_PATH="${HOME}/.factory/skills/learned"
 MIN_SESSION_LENGTH=10
 
 # Load config if exists
@@ -36,7 +36,7 @@ if [ -f "$CONFIG_FILE" ]; then
     echo "[ContinuousLearning] jq is required to parse config.json but not installed, using defaults" >&2
   else
     MIN_SESSION_LENGTH=$(jq -r '.min_session_length // 10' "$CONFIG_FILE")
-    LEARNED_SKILLS_PATH=$(jq -r '.learned_skills_path // "~/.claude/skills/learned/"' "$CONFIG_FILE" | sed "s|~|$HOME|")
+    LEARNED_SKILLS_PATH=$(jq -r '.learned_skills_path // "~/.factory/skills/learned/"' "$CONFIG_FILE" | sed "s|~|$HOME|")
   fi
 fi
 
@@ -56,7 +56,7 @@ if [ -z "$transcript_path" ] || [ ! -f "$transcript_path" ]; then
 fi
 
 # Count messages in session
-message_count=$(grep -c '"type":"user"' "$transcript_path" 2>/dev/null || echo "0")
+message_count=$(grep -c '"role":"user"' "$transcript_path" 2>/dev/null || echo "0")
 
 # Skip short sessions
 if [ "$message_count" -lt "$MIN_SESSION_LENGTH" ]; then

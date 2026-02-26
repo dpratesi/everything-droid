@@ -61,8 +61,8 @@
     "scripts/setup-package-manager.js",
     "scripts/skill-create-output.js",
     "skills/",
-    ".claude-plugin/plugin.json",
-    ".claude-plugin/README.md",
+    ".factory-plugin/plugin.json",
+    ".factory-plugin/README.md",
     "install.sh",
     "llms.txt"
   ],

@@ -51,9 +51,9 @@ Options:
 ```
 
 Store the choice as `INSTALL_LEVEL`. Set the target directory:
-- User-level: `TARGET=~/.claude`
-- Project-level: `TARGET=.claude` (relative to current project root)
-- Both: `TARGET_USER=~/.claude`, `TARGET_PROJECT=.claude`
+- User-level: `TARGET=~/.factory`
+- Project-level: `TARGET=.factory` (relative to current project root)
+- Both: `TARGET_USER=~/.factory`, `TARGET_PROJECT=.factory`
 
 Create the target directories if they don't exist:
 ```bash

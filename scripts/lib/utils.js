@@ -21,10 +21,10 @@ function getHomeDir() {
 }
 
 /**
- * Get the Claude config directory
+ * Get the Factory Droid config directory
  */
 function getClaudeDir() {
-  return path.join(getHomeDir(), '.claude');
+  return path.join(getHomeDir(), '.factory');
 }
 
 /**

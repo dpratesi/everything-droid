@@ -16,7 +16,7 @@ Run the instinct CLI using the plugin root path:
 python3 "${DROID_PLUGIN_ROOT}/skills/continuous-learning-v2/scripts/instinct-cli.py" status
 ```
 
-Or if `CLAUDE_PLUGIN_ROOT` is not set (manual installation), use:
+Or if `DROID_PLUGIN_ROOT` is not set (manual installation), use:
 
 ```bash
 python3 ~/.factory/skills/continuous-learning-v2/scripts/instinct-cli.py status

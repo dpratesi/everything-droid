@@ -15,7 +15,7 @@ export const isLinux: boolean;
 /** Get the user's home directory (cross-platform) */
 export function getHomeDir(): string;
 
-/** Get the Claude config directory (~/.claude) */
+/** Get the Factory Droid config directory (~/.factory) */
 export function getClaudeDir(): string;
 
 /** Get the sessions directory (~/.factory/sessions) */

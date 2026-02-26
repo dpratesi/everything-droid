@@ -4,32 +4,32 @@
 # Captures tool use events for pattern analysis.
 # Claude Code passes hook data via stdin as JSON.
 #
-# Hook config (in ~/.claude/settings.json):
+# Hook config (in ~/.factory/settings.json):
 #
-# If installed as a plugin, use ${CLAUDE_PLUGIN_ROOT}:
+# If installed as a plugin, use ${DROID_PLUGIN_ROOT}:
 # {
 #   "hooks": {
 #     "PreToolUse": [{
 #       "matcher": "*",
-#       "hooks": [{ "type": "command", "command": "${CLAUDE_PLUGIN_ROOT}/skills/continuous-learning-v2/hooks/observe.sh pre" }]
+#       "hooks": [{ "type": "command", "command": "${DROID_PLUGIN_ROOT}/skills/continuous-learning-v2/hooks/observe.sh pre" }]
 #     }],
 #     "PostToolUse": [{
 #       "matcher": "*",
-#       "hooks": [{ "type": "command", "command": "${CLAUDE_PLUGIN_ROOT}/skills/continuous-learning-v2/hooks/observe.sh post" }]
+#       "hooks": [{ "type": "command", "command": "${DROID_PLUGIN_ROOT}/skills/continuous-learning-v2/hooks/observe.sh post" }]
 #     }]
 #   }
 # }
 #
-# If installed manually to ~/.claude/skills:
+# If installed manually to ~/.factory/skills:
 # {
 #   "hooks": {
 #     "PreToolUse": [{
 #       "matcher": "*",
-#       "hooks": [{ "type": "command", "command": "~/.claude/skills/continuous-learning-v2/hooks/observe.sh pre" }]
+#       "hooks": [{ "type": "command", "command": "~/.factory/skills/continuous-learning-v2/hooks/observe.sh pre" }]
 #     }],
 #     "PostToolUse": [{
 #       "matcher": "*",
-#       "hooks": [{ "type": "command", "command": "~/.claude/skills/continuous-learning-v2/hooks/observe.sh post" }]
+#       "hooks": [{ "type": "command", "command": "~/.factory/skills/continuous-learning-v2/hooks/observe.sh post" }]
 #     }]
 #   }
 # }
@@ -39,7 +39,7 @@ set -e
 # Hook phase from CLI argument: "pre" (PreToolUse) or "post" (PostToolUse)
 HOOK_PHASE="${1:-post}"
 
-CONFIG_DIR="${HOME}/.claude/homunculus"
+CONFIG_DIR="${HOME}/.factory/homunculus"
 OBSERVATIONS_FILE="${CONFIG_DIR}/observations.jsonl"
 MAX_FILE_SIZE_MB=10
 

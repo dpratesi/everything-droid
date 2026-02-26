@@ -83,8 +83,9 @@ async function main() {
     process.exit(0);
   }
 
-  // Count user messages in session (allow optional whitespace around colon)
-  const messageCount = countInFile(transcriptPath, /"type"\s*:\s*"user"/g);
+  // Count user messages in session
+  // Factory Droid format uses "role":"user" inside message objects
+  const messageCount = countInFile(transcriptPath, /"role"\s*:\s*"user"/g);
 
   // Skip short sessions
   if (messageCount < minSessionLength) {
