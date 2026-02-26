@@ -46,7 +46,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"${DROID_PLUGIN_ROOT}/scripts/hooks/suggest-compact.js\""
+            "command": "node ${DROID_PLUGIN_ROOT}/scripts/hooks/suggest-compact.js"
           }
         ],
         "description": "Suggest manual compaction at logical intervals"
@@ -58,7 +58,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"${DROID_PLUGIN_ROOT}/scripts/hooks/pre-compact.js\""
+            "command": "node ${DROID_PLUGIN_ROOT}/scripts/hooks/pre-compact.js"
           }
         ],
         "description": "Save state before context compaction"
@@ -70,7 +70,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"${DROID_PLUGIN_ROOT}/scripts/hooks/session-start.js\""
+            "command": "node ${DROID_PLUGIN_ROOT}/scripts/hooks/session-start.js"
           }
         ],
         "description": "Load previous context and detect package manager on new session"
@@ -104,7 +104,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"${DROID_PLUGIN_ROOT}/scripts/hooks/post-edit-format.js\""
+            "command": "node ${DROID_PLUGIN_ROOT}/scripts/hooks/post-edit-format.js"
           }
         ],
         "description": "Auto-format JS/TS files after edits (auto-detects Biome or Prettier)"
@@ -114,7 +114,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"${DROID_PLUGIN_ROOT}/scripts/hooks/post-edit-typecheck.js\""
+            "command": "node ${DROID_PLUGIN_ROOT}/scripts/hooks/post-edit-typecheck.js"
           }
         ],
         "description": "TypeScript check after editing .ts/.tsx files"
@@ -124,7 +124,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"${DROID_PLUGIN_ROOT}/scripts/hooks/post-edit-console-warn.js\""
+            "command": "node ${DROID_PLUGIN_ROOT}/scripts/hooks/post-edit-console-warn.js"
           }
         ],
         "description": "Warn about console.log statements after edits"
@@ -136,7 +136,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"${DROID_PLUGIN_ROOT}/scripts/hooks/check-console-log.js\""
+            "command": "node ${DROID_PLUGIN_ROOT}/scripts/hooks/check-console-log.js"
           }
         ],
         "description": "Check for console.log in modified files after each response"
@@ -148,7 +148,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"${DROID_PLUGIN_ROOT}/scripts/hooks/session-end.js\""
+            "command": "node ${DROID_PLUGIN_ROOT}/scripts/hooks/session-end.js"
           }
         ],
         "description": "Persist session state on end"
@@ -158,7 +158,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"${DROID_PLUGIN_ROOT}/scripts/hooks/evaluate-session.js\""
+            "command": "node ${DROID_PLUGIN_ROOT}/scripts/hooks/evaluate-session.js"
           }
         ],
         "description": "Evaluate session for extractable patterns"
