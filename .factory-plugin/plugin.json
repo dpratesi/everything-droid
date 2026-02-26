@@ -1,0 +1,10 @@
+{
+  "name": "everything-droid",
+  "description": "Complete Factory Droid configuration collection - droids, skills, hooks, commands, MCP configs. Adapted from everything-claude-code for 100% Droid compatibility.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Adapted from affaan-m/everything-claude-code"
+  },
+  "repository": "https://github.com/affaan-m/everything-claude-code",
+  "license": "MIT"
+}

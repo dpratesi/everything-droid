@@ -1,0 +1,14 @@
+{
+  "name": "everything-droid",
+  "description": "Complete Factory Droid configuration collection",
+  "owner": {
+    "name": "everything-droid"
+  },
+  "plugins": [
+    {
+      "name": "everything-droid",
+      "description": "Complete Factory Droid configuration collection - droids, skills, hooks, commands, MCP configs.",
+      "source": "./"
+    }
+  ]
+}
