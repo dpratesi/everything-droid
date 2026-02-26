@@ -67,10 +67,10 @@
     "llms.txt"
   ],
   "bin": {
-    "ecc-install": "install.sh"
+    "edroid-install": "install.js"
   },
   "scripts": {
-    "postinstall": "echo '\\n  ecc-universal installed!\\n  Run: npx ecc-install typescript\\n  Docs: https://github.com/affaan-m/everything-claude-code\\n'",
+    "postinstall": "echo '\\n  everything-droid installed!\\n  Run: npx edroid-install typescript\\n  Docs: https://github.com/dpratesi/everything-droid\\n'",
     "lint": "eslint . && markdownlint '**/*.md' --ignore node_modules",
     "claw": "node scripts/claw.js",
     "test": "node scripts/ci/validate-agents.js && node scripts/ci/validate-commands.js && node scripts/ci/validate-rules.js && node scripts/ci/validate-skills.js && node scripts/ci/validate-hooks.js && node tests/run-all.js"
